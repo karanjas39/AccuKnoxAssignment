@@ -1,12 +1,12 @@
-import { ThemeToggler } from "@/components/Theme/ThemeToggler";
-import { Button } from "@/components/ui/button";
+import Navbar from "./components/Navbar/Navbar";
+import Toolbar from "./components/Toolbar/Toolbar";
 
 function App() {
   return (
-    <div className="p-8">
-      <Button variant="default">Hey there</Button>
-      <ThemeToggler />
-    </div>
+    <>
+      <Navbar />
+      <Toolbar />
+    </>
   );
 }
 
