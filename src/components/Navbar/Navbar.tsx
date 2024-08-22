@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 
 function Navbar() {
   return (
-    <nav className="p-2 flex items-center justify-between w-full">
+    <nav className="p-1 flex items-center justify-between w-full">
       <div className="flex items-center gap-2 font-bold text-sm">
         <div className="text-muted-foreground">Home {">"}</div>
         <div>Dashboard V2</div>
