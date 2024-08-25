@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "@/components/Theme/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
-// import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 import { Provider } from "react-redux";
 import { store } from "@/store/index";
 import ProtectedRoutes from "@/components/ProtectedRoutes/ProtectedRoutes";
@@ -19,8 +19,10 @@ function ClientProvider({ children }: ChildrenProp) {
             enableSystem
             disableTransitionOnChange
           >
-            {/* <Navbar /> */}
-            {children}
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              {children}
+            </div>
             <Toaster />
           </ThemeProvider>
         </ProtectedRoutes>
