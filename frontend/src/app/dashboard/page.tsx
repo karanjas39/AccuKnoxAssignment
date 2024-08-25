@@ -1,5 +1,11 @@
+import Toolbar from "@/components/Toolbar/Toolbar";
+
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return (
+    <div className="w-full">
+      <Toolbar />
+    </div>
+  );
 }
 
 export default Dashboard;

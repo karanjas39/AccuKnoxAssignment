@@ -13,3 +13,9 @@ export interface GeneralResponse {
 export interface Api_LoginResponse extends GeneralResponse {
   token: string;
 }
+
+export interface Api_UserDetailResponse extends GeneralResponse {
+  user: {
+    email: string;
+  };
+}

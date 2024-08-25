@@ -21,7 +21,7 @@ import { setToken } from "@/store/slices/authSlice";
 import { useToast } from "../ui/use-toast";
 
 function Login() {
-  const [Login, { isLoading, isSuccess }] = authApi.useLogInMutation();
+  const [Login, { isLoading }] = authApi.useLogInMutation();
   const router = useRouter();
   const dispatch = useDispatch();
   const { toast } = useToast();
@@ -37,7 +37,7 @@ function Login() {
   async function onSubmit(values: z_userLogin_type) {
     try {
       const response = await Login(values).unwrap();
-      if (response.success && isSuccess) {
+      if (response.success) {
         toast({ description: "You are logged in successfuly." });
         dispatch(setToken(response.token));
         router.push("/dashboard");
