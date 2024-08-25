@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { CreateCategory } from "../controllers/category";
+import { CreateCategory, DeleteCategory } from "../controllers/category";
 
 const category = new Hono<{
   Bindings: {
@@ -11,5 +11,6 @@ const category = new Hono<{
 }>();
 
 category.post("/create", CreateCategory);
+category.delete("/delete", DeleteCategory);
 
 export default category;

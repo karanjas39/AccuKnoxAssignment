@@ -1,15 +1,12 @@
 import { Context } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import {
-  z_categoryCreate,
-  z_deleteCategory,
-} from "@singhjaskaran/accuknox-common";
+import { z_deleteWidget, z_widgetCreate } from "@singhjaskaran/accuknox-common";
 
-export async function CreateCategory(c: Context) {
+export async function CreateWidget(c: Context) {
   const userId: string = c.get("userId");
   const body = await c.req.json();
-  const { success, data } = z_categoryCreate.safeParse(body);
+  const { success, data } = z_widgetCreate.safeParse(body);
 
   if (!success) {
     return c.json({
@@ -24,32 +21,34 @@ export async function CreateCategory(c: Context) {
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const newCategory = await prisma.category.create({
+    const newWidget = await prisma.widget.create({
       data: {
         name: data.name,
-        userId,
+        text: data.text,
+        categoryId: data.categoryId,
       },
     });
-    if (!newCategory) throw new Error("Failed to create new category.");
+    if (!newWidget) throw new Error("Failed to create new widget.");
+
     return c.json({
       success: true,
       status: 200,
-      message: "New category is created successfuly.",
+      message: "New widget is created successfuly.",
     });
   } catch (error) {
     const err = error as Error;
     return c.json({
       success: false,
       status: 400,
-      message: err.message ? err.message : "Error while creating category.",
+      message: err.message ? err.message : "Error while creating widget.",
     });
   }
 }
 
-export async function DeleteCategory(c: Context) {
+export async function DeleteWidget(c: Context) {
   const userId: string = c.get("userId");
   const body = await c.req.json();
-  const { success, data } = z_deleteCategory.safeParse(body);
+  const { success, data } = z_deleteWidget.safeParse(body);
 
   if (!success) {
     return c.json({
@@ -64,29 +63,23 @@ export async function DeleteCategory(c: Context) {
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    await prisma.widget.deleteMany({
+    await prisma.widget.delete({
       where: {
-        categoryId: data.id,
+        id: data.id,
       },
     });
 
-    await prisma.category.delete({
-      where: {
-        id: data.id,
-        userId,
-      },
-    });
     return c.json({
       success: true,
       status: 200,
-      message: "Category is deleted successfuly.",
+      message: "Widget is deleted successfuly.",
     });
   } catch (error) {
     const err = error as Error;
     return c.json({
       success: false,
       status: 400,
-      message: err.message ? err.message : "Error while deleting category.",
+      message: err.message ? err.message : "Error while deleting widget.",
     });
   }
 }
