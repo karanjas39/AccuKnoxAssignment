@@ -15,20 +15,23 @@ import { useDispatch } from "react-redux";
 import { clearToken } from "@/store/slices/authSlice";
 import { authApi } from "@/store/api/authApi";
 import { getFirstLetterOfEmail } from "@/utils/helpers";
+import { useRouter } from "next/navigation";
 
 export function Profile() {
   const { data, isLoading } = userApi.useFetchUserQuery();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   function handleLogout() {
     dispatch(clearToken());
+    dispatch(authApi.util.resetApiState());
   }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar>
-          <AvatarFallback className="capitalize">
+        <Avatar className="cursor-pointer">
+          <AvatarFallback className="uppercase">
             {!isLoading && data ? getFirstLetterOfEmail(data.user.email) : "A"}
           </AvatarFallback>
         </Avatar>
@@ -36,9 +39,7 @@ export function Profile() {
       <DropdownMenuContent className="w-[20px]">
         <DropdownMenuItem>
           <LogOut className="mr-2 h-4 w-4" />
-          <Link href="">
-            <Button onClick={handleLogout}>Logout</Button>
-          </Link>
+          <span onClick={handleLogout}>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

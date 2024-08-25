@@ -1,7 +1,7 @@
 export function getFirstLetterOfEmail(email: string): string {
   if (!email) {
-    return "A";
+    return "CN";
   }
 
-  return email.charAt(0);
+  return email.slice(0, 2);
 }

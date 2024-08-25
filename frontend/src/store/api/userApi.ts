@@ -7,7 +7,7 @@ import { Api_UserDetailResponse } from "@/utils/Types/types";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: BACKEND_URL,
+    baseUrl: `${BACKEND_URL}/user`,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
@@ -19,7 +19,10 @@ export const userApi = createApi({
   tagTypes,
   endpoints: (builder) => ({
     fetchUser: builder.query<Api_UserDetailResponse, void>({
-      query: () => "user/detail",
+      query: () => "/detail",
+    }),
+    fetchUserCategories: builder.query<Api_UserDetailResponse, void>({
+      query: () => "/categories",
     }),
   }),
 });

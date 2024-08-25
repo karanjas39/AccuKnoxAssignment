@@ -10,7 +10,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "CNAPP Dashboard",
   description: "This is the CNAPP dashboard provided as assigmnet by Accuknox.",
 };
 
