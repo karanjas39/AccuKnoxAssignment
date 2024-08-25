@@ -14,7 +14,7 @@ export async function authMiddleware(c: Context, next: Next) {
     }
 
     const token = jwt.split(" ")[1];
-    const payload = await verify(token, c.env.JWT_SECRET);
+    const payload = await verify(token, c.env.SECRET_KEY);
 
     if (!payload) {
       return c.json({
@@ -23,14 +23,7 @@ export async function authMiddleware(c: Context, next: Next) {
         message: "User is unauthorized.",
       });
     }
-    if (!payload.admin) {
-      return c.json({
-        success: false,
-        status: 400,
-        message: "User is unauthorized.",
-      });
-    }
-    c.set("userId", payload.adminId);
+    c.set("userId", payload.userId);
     await next();
   } catch (error) {
     return c.json({

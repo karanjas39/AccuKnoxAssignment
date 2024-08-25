@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { CreateCategory } from "../controllers/category";
 
 const category = new Hono<{
   Bindings: {
@@ -8,5 +9,7 @@ const category = new Hono<{
     userId: string;
   };
 }>();
+
+category.post("/create", CreateCategory);
 
 export default category;

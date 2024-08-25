@@ -12,21 +12,21 @@ model User {
   id       String   @id @default(cuid())
   email    String   @unique
   password String
-  widgets  Widget[]
+  categories Category[]
 }
 
 model Category {
   id      String   @id @default(cuid())
   name    String
+  userId  String
   widgets Widget[]
+  user    User     @relation(fields: [userId], references: [id])
 }
 
 model Widget {
   id         String   @id @default(cuid())
   name       String
   text       String
-  userId     String
   categoryId String
-  user       User     @relation(fields: [userId], references: [id])
   category   Category @relation(fields: [categoryId], references: [id])
 }
