@@ -3,10 +3,11 @@
 import Category from "@/components/Dashboard/Category/Category";
 import Toolbar from "@/components/Dashboard/Toolbar/Toolbar";
 import Loader from "@/components/Loader/Loader";
+import { categoriesApi } from "@/store/api/categories";
 import { userApi } from "@/store/api/userApi";
 
 function Dashboard() {
-  const { data, isLoading, isSuccess } = userApi.useFetchUserCategoriesQuery();
+  const { data, isLoading, isSuccess } = categoriesApi.useAllCategoriesQuery();
 
   if (isLoading && !data && !isSuccess) {
     return <Loader />;

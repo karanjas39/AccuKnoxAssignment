@@ -2,8 +2,12 @@ import { BACKEND_URL } from "@/utils/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "@/store/index";
 import { categories_tag, tagTypes } from "@/store/api/tags";
-import { GeneralResponse } from "@/utils/Types/types";
+import {
+  Api_UserCategoriesResponse,
+  GeneralResponse,
+} from "@/utils/Types/types";
 import { z_categoryCreate_type } from "@singhjaskaran/accuknox-common";
+import { setCategories } from "../slices/categoriesSlice";
 
 export const categoriesApi = createApi({
   reducerPath: "categoriesApi",
@@ -19,6 +23,18 @@ export const categoriesApi = createApi({
   }),
   tagTypes,
   endpoints: (builder) => ({
+    allCategories: builder.query<Api_UserCategoriesResponse, void>({
+      query: () => "/categories",
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setCategories(data.categories));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      providesTags: [categories_tag],
+    }),
     addCategory: builder.mutation<GeneralResponse, z_categoryCreate_type>({
       query: (data) => ({
         url: "/category/create",
