@@ -54,7 +54,7 @@ function Login() {
   return (
     <div className="sm:w-[30%] w-[80%] mx-auto my-3 flex-1 flex flex-col items-center justify-center">
       <h2 className="text-center text-3xl font-bold w-full">
-        <span className="">CNAPP's</span> Login
+        <span className="">CNAPP&lsquo;s</span> Login
       </h2>
       <Form {...form}>
         <form
