@@ -31,8 +31,11 @@ function Navbar() {
             <p className="text-2xl font-bold">CNAPP</p>
           </div>
           <div className="flex items-center gap-3">
-            <Link href="/">
-              <Button variant="secondary">Login</Button>
+            <Link
+              href="https://github.com/karanjas39/AccuKnoxAssignment"
+              target="_blank"
+            >
+              <Button variant="outline">Source Code</Button>
             </Link>
             <ThemeToggler />
           </div>

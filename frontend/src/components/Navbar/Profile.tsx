@@ -1,5 +1,5 @@
 "use client";
-import { LogOut } from "lucide-react";
+import { LogOut, Code } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -35,7 +35,16 @@ export function Profile() {
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[20px]">
+      <DropdownMenuContent className="w-[50px]">
+        <DropdownMenuItem>
+          <Code className="mr-2 h-4 w-4" />
+          <a
+            href="https://github.com/karanjas39/AccuKnoxAssignment"
+            target="_blank"
+          >
+            Code
+          </a>
+        </DropdownMenuItem>
         <DropdownMenuItem>
           <LogOut className="mr-2 h-4 w-4" />
           <span onClick={handleLogout}>Logout</span>

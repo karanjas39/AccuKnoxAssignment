@@ -68,7 +68,7 @@ function Login() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="email" type="email" {...field} />
+                  <Input placeholder="email" readOnly type="email" {...field} />
                 </FormControl>
                 <FormDescription>
                   Enter your registered email here
@@ -84,7 +84,12 @@ function Login() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="password" type="password" {...field} />
+                  <Input
+                    placeholder="password"
+                    readOnly
+                    type="password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>
                   Enter your account password here

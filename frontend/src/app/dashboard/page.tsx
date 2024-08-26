@@ -17,11 +17,13 @@ function Dashboard() {
     <div className="w-full mt-3 mb-3">
       <Toolbar />
       <div className="flex flex-col gap-5 w-[90%] mx-auto mt-4">
-        {data && data?.categories?.length
-          ? data.categories.map((category) => (
-              <Category category={category} key={category.id} />
-            ))
-          : null}
+        {data && data?.categories?.length ? (
+          data.categories.map((category) => (
+            <Category category={category} key={category.id} />
+          ))
+        ) : (
+          <p className="text-sm text-center">There is no category added yet.</p>
+        )}
       </div>
     </div>
   );
