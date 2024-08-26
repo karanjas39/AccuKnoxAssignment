@@ -6,17 +6,17 @@ import Loader from "@/components/Loader/Loader";
 import { userApi } from "@/store/api/userApi";
 
 function Dashboard() {
-  const { data, isLoading } = userApi.useFetchUserCategoriesQuery();
+  const { data, isLoading, isSuccess } = userApi.useFetchUserCategoriesQuery();
 
-  if (isLoading && !data) {
+  if (isLoading && !data && !isSuccess) {
     return <Loader />;
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-3 mb-3">
       <Toolbar />
       <div className="flex flex-col gap-5 w-[90%] mx-auto mt-4">
-        {data
+        {data && data?.categories?.length
           ? data.categories.map((category) => (
               <Category category={category} key={category.id} />
             ))

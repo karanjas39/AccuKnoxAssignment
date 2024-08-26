@@ -1,7 +1,6 @@
 "use client";
 import { LogOut } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,21 +9,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { userApi } from "@/store/api/userApi";
-import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { clearToken } from "@/store/slices/authSlice";
 import { authApi } from "@/store/api/authApi";
 import { getFirstLetterOfEmail } from "@/utils/helpers";
-import { useRouter } from "next/navigation";
+import { categoriesApi } from "@/store/api/categories";
 
 export function Profile() {
   const { data, isLoading } = userApi.useFetchUserQuery();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   function handleLogout() {
     dispatch(clearToken());
     dispatch(authApi.util.resetApiState());
+    dispatch(userApi.util.resetApiState());
+    dispatch(categoriesApi.util.resetApiState());
   }
 
   return (

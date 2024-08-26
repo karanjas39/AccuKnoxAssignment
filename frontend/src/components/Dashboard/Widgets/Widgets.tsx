@@ -20,7 +20,7 @@ function Widgets() {
 
   return (
     <>
-      {categories.length ? (
+      {categories && categories.length ? (
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="secondary">Widgets</Button>

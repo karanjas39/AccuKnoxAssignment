@@ -1,7 +1,7 @@
 "use client";
 
 import { ThemeToggler } from "@/components/Theme/ThemeToggler";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";

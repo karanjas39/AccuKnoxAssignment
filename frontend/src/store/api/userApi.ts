@@ -27,7 +27,6 @@ export const userApi = createApi({
     }),
     fetchUserCategories: builder.query<Api_UserCategoriesResponse, void>({
       query: () => "/categories",
-      providesTags: [categories_tag],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -36,6 +35,7 @@ export const userApi = createApi({
           console.error(error);
         }
       },
+      providesTags: [categories_tag],
     }),
   }),
 });

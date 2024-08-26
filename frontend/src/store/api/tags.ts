@@ -1,3 +1,3 @@
-export const categories_tag = "categories";
+export const categories_tag = { type: "Categories" };
 
-export const tagTypes = [categories_tag] as const;
+export const tagTypes = [categories_tag.type] as const;
