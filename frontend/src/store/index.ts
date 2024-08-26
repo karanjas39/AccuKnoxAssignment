@@ -4,16 +4,22 @@ import authReducer from "@/store/slices/authSlice";
 import categoriesReducer from "@/store/slices/categoriesSlice";
 import { authApi } from "@/store/api/authApi";
 import { userApi } from "./api/userApi";
+import { categoriesApi } from "./api/categories";
 
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [categoriesApi.reducerPath]: categoriesApi.reducer,
     auth: authReducer,
     categories: categoriesReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware, userApi.middleware),
+    getDefaultMiddleware().concat(
+      authApi.middleware,
+      userApi.middleware,
+      categoriesApi.middleware
+    ),
 });
 
 setupListeners(store.dispatch);

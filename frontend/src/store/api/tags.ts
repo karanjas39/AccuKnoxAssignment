@@ -1,3 +1,3 @@
-// export const tag_yearly_stats = "yearly_stats";
+export const categories_tag = "categories";
 
-export const tagTypes = [] as const;
+export const tagTypes = [categories_tag] as const;

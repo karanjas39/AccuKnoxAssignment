@@ -1,7 +1,7 @@
 import { BACKEND_URL } from "@/utils/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "@/store/index";
-import { tagTypes } from "@/store/api/tags";
+import { categories_tag, tagTypes } from "@/store/api/tags";
 import {
   Api_UserCategoriesResponse,
   Api_UserDetailResponse,
@@ -27,14 +27,13 @@ export const userApi = createApi({
     }),
     fetchUserCategories: builder.query<Api_UserCategoriesResponse, void>({
       query: () => "/categories",
-      // providesTags: ["Categories"],
+      providesTags: [categories_tag],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
           dispatch(setCategories(data.categories));
         } catch (error) {
-          // Handle error if needed
+          console.error(error);
         }
       },
     }),
