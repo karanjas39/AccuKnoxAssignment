@@ -29,8 +29,8 @@ function Login() {
   const form = useForm<z_userLogin_type>({
     resolver: zodResolver(z_userLogin),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "accuknox123@gmail.com",
+      password: "123456",
     },
   });
 
