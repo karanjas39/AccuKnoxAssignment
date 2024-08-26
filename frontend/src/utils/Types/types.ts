@@ -19,3 +19,19 @@ export interface Api_UserDetailResponse extends GeneralResponse {
     email: string;
   };
 }
+
+export interface Api_UserCategoriesResponse extends GeneralResponse {
+  categories: CategoryType[];
+}
+
+export interface CategoryType {
+  id: string;
+  name: string;
+  widgets: WidgetType[];
+}
+
+export interface WidgetType {
+  id: string;
+  name: string;
+  text: string;
+}

@@ -2,7 +2,10 @@ import { BACKEND_URL } from "@/utils/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "@/store/index";
 import { tagTypes } from "@/store/api/tags";
-import { Api_UserDetailResponse } from "@/utils/Types/types";
+import {
+  Api_UserCategoriesResponse,
+  Api_UserDetailResponse,
+} from "@/utils/Types/types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -21,7 +24,7 @@ export const userApi = createApi({
     fetchUser: builder.query<Api_UserDetailResponse, void>({
       query: () => "/detail",
     }),
-    fetchUserCategories: builder.query<Api_UserDetailResponse, void>({
+    fetchUserCategories: builder.query<Api_UserCategoriesResponse, void>({
       query: () => "/categories",
     }),
   }),
