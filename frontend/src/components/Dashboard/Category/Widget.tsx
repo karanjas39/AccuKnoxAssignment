@@ -5,17 +5,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { WidgetType } from "@/utils/Types/types";
-import { Trash2 } from "lucide-react";
+import DeleteWidget from "./DeleteWidget";
 
-function Widget({ widget }: { widget: WidgetType }) {
+function Widget({ widget, all }: { widget: WidgetType; all: boolean }) {
   return (
-    <Card>
+    <Card className="max-w-[600px]">
       <CardHeader className="flex flex-col justify-between">
         <div className="flex items-center justify-between">
           <CardTitle>{widget.name}</CardTitle>
-          <Trash2 className="self-end w-4 cursor-pointer" />
+          <DeleteWidget id={widget.id} />
         </div>
-        <CardDescription>{widget.text}</CardDescription>
+        {all ? <CardDescription>{widget.text}</CardDescription> : null}
       </CardHeader>
     </Card>
   );

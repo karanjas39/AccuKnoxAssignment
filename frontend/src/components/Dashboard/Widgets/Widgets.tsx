@@ -14,6 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { Card } from "@/components/ui/card";
+import Widget from "../Category/Widget";
 
 function Widgets() {
   const { categories } = useSelector((state: RootState) => state.categories);
@@ -40,21 +41,19 @@ function Widgets() {
                 <TabsList>
                   {categories.map((category) => (
                     <TabsTrigger key={category.id} value={category.id}>
-                      {category.name.split(" ")[0]}
+                      {category.name}
                     </TabsTrigger>
                   ))}
                 </TabsList>
                 {categories.map((category) => (
-                  <TabsContent key={category.id} value={category.id}>
+                  <TabsContent
+                    key={category.id}
+                    value={category.id}
+                    className="flex flex-col gap-3"
+                  >
                     {category.widgets.length ? (
                       category.widgets.map((widget) => (
-                        <Card
-                          key={widget.id}
-                          className="mb-2 flex items-start justify-between p-3"
-                        >
-                          <h3 className="text-sm">{widget.name}</h3>
-                          <Trash2 className="self-end w-4 cursor-pointer" />
-                        </Card>
+                        <Widget all={false} widget={widget} key={widget.id} />
                       ))
                     ) : (
                       <p>No widgets available in this category.</p>

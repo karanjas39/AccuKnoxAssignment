@@ -6,7 +6,12 @@ import {
   Api_UserCategoriesResponse,
   GeneralResponse,
 } from "@/utils/Types/types";
-import { z_categoryCreate_type } from "@singhjaskaran/accuknox-common";
+import {
+  z_categoryCreate_type,
+  z_deleteCategory_type,
+  z_deleteWidget_type,
+  z_widgetCreate_type,
+} from "@singhjaskaran/accuknox-common";
 import { setCategories } from "../slices/categoriesSlice";
 
 export const categoriesApi = createApi({
@@ -39,6 +44,30 @@ export const categoriesApi = createApi({
       query: (data) => ({
         url: "/category/create",
         method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [categories_tag],
+    }),
+    addWidget: builder.mutation<GeneralResponse, z_widgetCreate_type>({
+      query: (data) => ({
+        url: "/widget/create",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [categories_tag],
+    }),
+    deleteCategory: builder.mutation<GeneralResponse, z_deleteCategory_type>({
+      query: (data) => ({
+        url: "/category/delete",
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: [categories_tag],
+    }),
+    deleteWidget: builder.mutation<GeneralResponse, z_deleteWidget_type>({
+      query: (data) => ({
+        url: "/widget/delete",
+        method: "DELETE",
         body: data,
       }),
       invalidatesTags: [categories_tag],

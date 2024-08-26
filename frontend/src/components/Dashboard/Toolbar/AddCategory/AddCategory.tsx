@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -44,6 +43,7 @@ function AddCategory() {
       const response = await addCategory(values).unwrap();
       if (response.success) {
         toast({ description: response.message });
+        form.reset();
       } else throw new Error(response.message);
     } catch (error) {
       const err = error as Error;
@@ -69,7 +69,7 @@ function AddCategory() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col justify-center mt-5 gap-3 w-full"
+            className="flex flex-col gap-3 w-full"
           >
             <FormField
               control={form.control}
