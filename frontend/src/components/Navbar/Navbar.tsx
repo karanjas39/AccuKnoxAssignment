@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Infinity } from "lucide-react";
 import { Profile } from "./Profile";
+import ProjectDetails from "./ProjectDetails";
 
 function Navbar() {
   const { token } = useSelector((state: RootState) => state.auth);
@@ -37,6 +38,7 @@ function Navbar() {
             >
               <Button variant="outline">Source Code</Button>
             </Link>
+            <ProjectDetails />
             <ThemeToggler />
           </div>
         </>
