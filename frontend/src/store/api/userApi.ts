@@ -6,6 +6,7 @@ import {
   Api_UserCategoriesResponse,
   Api_UserDetailResponse,
 } from "@/utils/Types/types";
+import { setCategories } from "../slices/categoriesSlice";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -26,6 +27,16 @@ export const userApi = createApi({
     }),
     fetchUserCategories: builder.query<Api_UserCategoriesResponse, void>({
       query: () => "/categories",
+      // providesTags: ["Categories"],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          console.log(data);
+          dispatch(setCategories(data.categories));
+        } catch (error) {
+          // Handle error if needed
+        }
+      },
     }),
   }),
 });

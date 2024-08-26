@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import authReducer from "@/store/slices/authSlice";
+import categoriesReducer from "@/store/slices/categoriesSlice";
 import { authApi } from "@/store/api/authApi";
 import { userApi } from "./api/userApi";
 
@@ -9,6 +10,7 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     auth: authReducer,
+    categories: categoriesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware, userApi.middleware),
